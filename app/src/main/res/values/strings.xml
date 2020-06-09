@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Alarm AAD</string>
+    <string name="choose_your_alarm_level">Choose Your Alarm Level:</string>
+    <string name="normal_alarm">Normal Alarm</string>
+    <string name="hardcore_alarm">Hardcore Alarm</string>
+    <string name="nightmare_alarm">Nightmare Alarm</string>
+</resources>
