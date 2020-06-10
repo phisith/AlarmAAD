@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SetAlarmActivity">
 
-    <TimePicker
-        android:id="@+id/timepicker"
-        android:theme="@style/time_picker_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:timePickerMode="spinner">
-
-    </TimePicker>
 
     <Button
         android:id="@+id/set_alarm"
@@ -24,7 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="255dp"
-        android:onClick="setAlarm"
         android:text="Set Alarm" />
 
     <TextView
