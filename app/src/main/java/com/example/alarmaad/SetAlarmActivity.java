@@ -23,11 +23,11 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
     TextView showtime;
 
-    int hour, min;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_alarm);
+
 
         showtime = (TextView)findViewById(R.id.showtime);
 
