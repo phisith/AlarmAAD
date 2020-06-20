@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alarmaad">
 
-
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SetAlarmActivity"></activity>
-        <activity android:name=".Alarm_listActivity"></activity>
+        <activity android:name=".insertlistActivity"></activity>
+        <activity android:name=".SetAlarmActivity" />
+        <activity android:name=".Todo_listActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".NotificationReceiver"></receiver>
+        <receiver android:name=".NotificationReceiver" />
     </application>
 
 </manifest>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "668213252842",
+    "firebase_url": "https://aad-alarm.firebaseio.com",
+    "project_id": "aad-alarm",
+    "storage_bucket": "aad-alarm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668213252842:android:86a6b517a8270c7122fd93",
+        "android_client_info": {
+          "package_name": "com.example.alarmaad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668213252842-bn6ah7k4upnma07ve7t2dkt823vnqdlh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alarmaad",
+            "certificate_hash": "abdcf19f73a54786dddb066911fba10abfc5c852"
+          }
+        },
+        {
+          "client_id": "668213252842-bbua7jnurt3eacss9trtrh9sl23j8752.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC_BajuueTE0LC-5bSOYDXy8iWDigF9wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668213252842-bbua7jnurt3eacss9trtrh9sl23j8752.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

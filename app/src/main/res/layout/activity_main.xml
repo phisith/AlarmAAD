@@ -7,6 +7,7 @@
     android:id="@+id/root2"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
@@ -50,23 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="338dp"
-        android:text="@string/hardcore_alarm" />
-
-    <Button
-        android:id="@+id/Button_main3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="438dp"
-        android:text="@string/nightmare_alarm" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/test"
-        android:text="test light"/>
+        android:layout_marginTop="303dp"
+        android:text="Todo List" />
 
 
 </RelativeLayout>

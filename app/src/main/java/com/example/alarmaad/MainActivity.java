@@ -2,7 +2,6 @@ package com.example.alarmaad;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +20,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button normal_b, test;
+    Button normal_b, Button_main2;
     //sensor---------------------------------------------------------------------------------------
     TextView text1;
 
@@ -101,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         normal_b = (Button)findViewById(R.id.normal_b);
-        test = (Button)findViewById(R.id.test);
+        Button_main2 = (Button)findViewById(R.id.Button_main2);
+
 
         normal_b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,12 +110,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        test.setOnClickListener(new View.OnClickListener() {
+        Button_main2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-     //           openLightSensor();
+                openTodo_list();
             }
         });
+
+
 
 
     }
@@ -130,21 +132,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);;
-        return true;
+    private void openTodo_list() {
+        Intent intent = new Intent(this, Todo_listActivity.class);
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.List:
-                startActivity(new Intent(this, Alarm_listActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     //sensor----------------------------------------------------------------------------------------
     @Override
