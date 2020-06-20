@@ -44,5 +44,6 @@ public class NotiChannel extends ContextWrapper {
                 .setContentText("Your AlarmManager is working mannnn.")
                 .setSmallIcon(R.mipmap.ic_launcher);
     }
+
 }
 

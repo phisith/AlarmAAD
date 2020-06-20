@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
+    Boolean data = SetAlarmActivity.getData();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,7 +26,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         notiChannel.getManager().notify(1, nb.build());
 
         Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        long[] mVibratePattern = new long[]{0, 400, 1000, 600, 1000, 800, 1000, 1000};
+        long[] mVibratePattern = new long[]{0, 250, 800, 600, 1000, 800, 1000, 1000};
         VibrationEffect effect = VibrationEffect.createWaveform(mVibratePattern, 0);
         vibrator.vibrate(effect);
 
@@ -35,25 +36,19 @@ public class NotificationReceiver extends BroadcastReceiver {
             Log.v("Can Vibrate", "NO");
         }
 
-        //vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
 
-
-
-
-
-        //Notification notification = new Notification.Builder(context)
-              //  .setContentTitle("Alarm is On")
-            //    .setContentText("You had set up the alarm")
-          //      .setSmallIcon(R.mipmap.ic_launcher).build();
-
-        //NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        //notification.flags|= Notification.FLAG_AUTO_CANCEL;
-        //notificationManager.notify(0, notification);
 
         Uri RingRing = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 
         Ringtone ringtone = RingtoneManager.getRingtone(context,RingRing);
         ringtone.play();
+
+
+
+
+        if (!data){
+            ringtone.stop();
+        }
 
 
     }

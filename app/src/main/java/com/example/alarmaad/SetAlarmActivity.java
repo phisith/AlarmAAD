@@ -8,20 +8,37 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class SetAlarmActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     TextView showtime;
+
+    Button Stop_alarm, Set_alram;
+
+    //MediaPlayer mediaPlayer;
+    Intent intent;
+
+
+
+
+
+    public static boolean data = true;
+
+    public static boolean getData(){
+        return data;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +48,40 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
         showtime = (TextView)findViewById(R.id.showtime);
 
-        Button timepickerdialog =findViewById(R.id.set_alarm);
-        timepickerdialog.setOnClickListener(new View.OnClickListener() {
+        Set_alram = (Button)findViewById(R.id.set_alarm);
+
+        Stop_alarm = (Button)findViewById(R.id.Stop_alarm);
+
+        Set_alram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment timepick = new com.example.alarmaad.TimePicker();
-                timepick.show(getSupportFragmentManager(),"time picker");
-
+                DialogFragment TimepickerDialog = new com.example.alarmaad.TimePicker();
+                TimepickerDialog.show(getSupportFragmentManager(),"Time Picker");
             }
+        });
+
+        intent = new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class);
+
+        Stop_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopService(new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class));
+                cancelAlarm();
+            }
+
         });
 
 
 
+
+
+
+
     }
+
+
+
+
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -53,17 +91,20 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
         calendar.set(Calendar.MINUTE,minute);
         calendar.set(Calendar.SECOND,0);
 
-        updatetimetext(calendar);
+        ShowTimeSet(calendar);
         startAlarm(calendar);
     }
 
-    public void updatetimetext(Calendar calendar){
-        String timeText =  "Alarm set at: ";
-        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+    public void ShowTimeSet(Calendar calendar){
+        String Timeset =  "Alarm set at: ";
+        Timeset += DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
 
-        showtime.setText(timeText);
+        showtime.setText(Timeset);
 
     }
+    Uri RingRing = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+
+    Ringtone ringtone = RingtoneManager.getRingtone(this,RingRing);
 
     public void startAlarm(Calendar calendar) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -72,38 +113,35 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
         if(calendar.before(Calendar.getInstance())){
             calendar.add(Calendar.DATE, 1);
+
+
+
         }
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
+        startService(new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class));
+
+
+
+
     }
+
+    public void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        alarmManager.cancel(pendingIntent);
+
+
+
+       showtime.setText("Alarm canceled");
+    }
+
+
+
 
 }
 
-    //public void setAlarm (View view){
 
-      //  AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-
-        //Date date = new Date();
-
-        //Calendar C_A = Calendar.getInstance(); // this for the alarm
-        //Calendar C_T = Calendar.getInstance(); // this for the current time
-
-        //C_A.setTime(date);
-        //C_T.setTime(date);
-
-
-        //if(C_A.before(C_T)){
-        //    C_A.add(Calendar.DATE,1);
-        //}
-
-        //Intent intent = new Intent(SetAlarmActivity.this,NotificationReceiver.class);
-        //PendingIntent pendingIntent = PendingIntent.getBroadcast(SetAlarmActivity.this,24444,intent,0);
-        //alarmManager.set(AlarmManager.RTC_WAKEUP,C_A.getTimeInMillis(),pendingIntent);
-
-
-
-
-
-   // }
 
 
