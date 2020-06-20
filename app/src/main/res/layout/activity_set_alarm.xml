@@ -7,36 +7,37 @@
     android:id="@+id/root3"
     tools:context=".SetAlarmActivity">
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <Button
         android:id="@+id/set_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="346dp"
-        android:layout_marginEnd="152dp"
+        android:layout_margin="8dp"
         android:text="Set Alarm" />
 
     <Button
         android:id="@+id/Stop_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="255dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/set_alarm"
+
         android:text="Stop Alarm" />
 
     <TextView
         android:id="@+id/showtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="251dp"
         android:text="Alarm set at: "
-        android:textSize="20sp" />
+        android:layout_above="@id/set_alarm"
+        android:textSize="35sp" />
+    </RelativeLayout>
 
 
 </RelativeLayout>

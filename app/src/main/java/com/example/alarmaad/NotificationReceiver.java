@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
-    Boolean data = SetAlarmActivity.getData();
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -45,10 +45,6 @@ public class NotificationReceiver extends BroadcastReceiver {
 
 
 
-
-        if (!data){
-            ringtone.stop();
-        }
 
 
     }

@@ -3,6 +3,7 @@ package com.example.alarmaad;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.LayoutTransition;
 import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -14,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         root = findViewById(R.id.root2);
         text1 = findViewById(R.id.text1);
         tempV = findViewById(R.id.tempV);
+
+
+
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);

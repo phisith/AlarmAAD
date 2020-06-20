@@ -27,7 +27,6 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
     Button Stop_alarm, Set_alram;
 
-    //MediaPlayer mediaPlayer;
     Intent intent;
 
 
