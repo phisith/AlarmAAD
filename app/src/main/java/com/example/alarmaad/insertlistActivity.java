@@ -114,29 +114,29 @@ public class insertlistActivity extends AppCompatActivity {
         };
     }
 
-    private void saveToFirebase() {
+    private void saveToFirebase() { // set the input values into the database
         String task = insert_task.getText().toString();
         String priority = insert_priority.getText().toString();
         String Date_or_Time = insert_Date_or_Time.getText().toString();
 
-        if(!TextUtils.isEmpty(task) && !TextUtils.isEmpty(priority)){
+        if(!TextUtils.isEmpty(task) && !TextUtils.isEmpty(priority)){ //if the task and priority isn't enough
 
             Todo todo = new Todo(task, priority, Date_or_Time);
 
-            reference.push().setValue(todo).addOnSuccessListener(new OnSuccessListener<Void>() {
+            reference.push().setValue(todo).addOnSuccessListener(new OnSuccessListener<Void>() { //upload the data into the database.
                 @Override
                 public void onSuccess(Void aVoid) {
 
-                    Toast.makeText(insertlistActivity.this, "Task is added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(insertlistActivity.this, "Task is added", Toast.LENGTH_SHORT).show(); // show the message when the data added
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onFailure(@NonNull Exception e) {
+                public void onFailure(@NonNull Exception e) { // if the data can't be upload, show the error message from the system
                     Toast.makeText(insertlistActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Toast.makeText(insertlistActivity.this, "Task is added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(insertlistActivity.this, "Task is added", Toast.LENGTH_SHORT).show(); // show the message when the data added
         }
 
     }

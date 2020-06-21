@@ -18,7 +18,7 @@ public class NotiChannel extends ContextWrapper {
 
     public NotiChannel(Context base) {
         super(base);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ //if the android verison is higher than 26 need to create the channel for the notification
             createChannel();
 
         }
@@ -38,10 +38,10 @@ public class NotiChannel extends ContextWrapper {
         return notificationManager;
     }
 
-    public NotificationCompat.Builder getChannelNotification(){
+    public NotificationCompat.Builder getChannelNotification(){ //set the title and the text in the notification
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle("Alarm!")
-                .setContentText("Your AlarmManager is working mannnn.")
+                .setContentText("Wake up broooooooooooo!!!!!!")
                 .setSmallIcon(R.mipmap.ic_launcher);
     }
 

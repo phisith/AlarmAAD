@@ -112,17 +112,17 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
         Set_alram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment TimepickerDialog = new com.example.alarmaad.TimePicker();
+                DialogFragment TimepickerDialog = new com.example.alarmaad.TimePicker(); // call the timepickerdialog form the set_alarm buttton
                 TimepickerDialog.show(getSupportFragmentManager(),"Time Picker");
             }
         });
 
-        intent = new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class);
+        intent = new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class); //call the alarm song class
 
         Stop_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                stopService(new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class));
+            public void onClick(View v) { // click the stop_alarm button to stop the alarm
+                stopService(new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class)); //stop the alarm song
                 cancelAlarm();
             }
 
@@ -138,7 +138,7 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) { // set the time in the timepick to get the alarm start
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
@@ -149,18 +149,16 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
         startAlarm(calendar);
     }
 
-    public void ShowTimeSet(Calendar calendar){
+    public void ShowTimeSet(Calendar calendar){ // set the time that you set on the textview
         String Timeset =  "Alarm set at: ";
         Timeset += DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
 
         showtime.setText(Timeset);
 
     }
-    Uri RingRing = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 
-    Ringtone ringtone = RingtoneManager.getRingtone(this,RingRing);
 
-    public void startAlarm(Calendar calendar) {
+    public void startAlarm(Calendar calendar) { // to get the alarm ringing and show the notification
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
@@ -172,15 +170,15 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
         }
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
-        startService(new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class));
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent); // actually the alarm start from here
+        startService(new Intent(getApplicationContext(), com.example.alarmaad.Ringtone.class)); // get the alarm song start
 
 
 
 
     }
 
-    public void cancelAlarm() {
+    public void cancelAlarm() { //cancel the alarm
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
@@ -188,12 +186,12 @@ public class SetAlarmActivity extends AppCompatActivity implements TimePickerDia
 
 
 
-       showtime.setText("Alarm canceled");
+       showtime.setText("Alarm canceled"); // set the message that alarm already got canceled
     }
 
     public void finish(){
         super.finish();
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left); //animation slide in and out
     }
 
     //sensor----------------------------------------------------------------------------------------

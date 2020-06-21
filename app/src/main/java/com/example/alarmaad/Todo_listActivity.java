@@ -52,8 +52,8 @@ public class Todo_listActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
 
-    ArrayList<Todo> todoArrayList;
-    RecyclerAdapter recyclerAdapter;
+    ArrayList<Todo> todoArrayList; // the list to store the values of todo
+    RecyclerAdapter recyclerAdapter; //the adapter for the recyclerview
 
 
 
@@ -67,18 +67,18 @@ public class Todo_listActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference("ToDoList");
+        reference = firebaseDatabase.getReference("ToDoList"); // select the location or go to the location
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true); // set the list
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); //set and show the list
 
 
         todoArrayList = new ArrayList<>();
 
 
-        clearlist();
+        clearlist(); // clear the list, so the list will not stack for make the list mass up
 
-        GetDataFromdatabase();
+        GetDataFromdatabase(); // call the get data from the database
 
         root = findViewById(R.id.root6);
 
@@ -141,25 +141,25 @@ public class Todo_listActivity extends AppCompatActivity {
     }
 
     private void GetDataFromdatabase() {
-        Query query = reference;
+        Query query = reference; // go to the location in the database that we set before
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { // read the data from the database
                 clearlist();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Todo todo = new Todo();
 
-                    todo.setTask(snapshot.child("task").getValue().toString());
-                    todo.setPriority(snapshot.child("priority").getValue().toString());
-                    todo.setDateortime(snapshot.child("dateortime").getValue().toString());
+                    todo.setTask(snapshot.child("task").getValue().toString()); //read the task
+                    todo.setPriority(snapshot.child("priority").getValue().toString()); //read the priority
+                    todo.setDateortime(snapshot.child("dateortime").getValue().toString()); //read the date or time
 
-                    todoArrayList.add(todo);
+                    todoArrayList.add(todo); // add the data that read from the database into the array list
                 }
 
                 recyclerAdapter = new RecyclerAdapter(getApplicationContext(), todoArrayList);
                 recyclerView.setAdapter(recyclerAdapter);
-                recyclerAdapter.notifyDataSetChanged();
+                recyclerAdapter.notifyDataSetChanged(); // set the data need to be dispaly
             }
 
             @Override
@@ -172,13 +172,13 @@ public class Todo_listActivity extends AppCompatActivity {
     }
 
     private void resetlist(){
-        Query query = reference;
+        Query query = reference; //go to the location that we set before
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                    appleSnapshot.getRef().removeValue();
+                for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) { //read the data in the database
+                    appleSnapshot.getRef().removeValue(); // remove the list from the database
                 }
             }
 
@@ -203,7 +203,7 @@ public class Todo_listActivity extends AppCompatActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { // to call the button that create to be on the toolbar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);;
         return true;
@@ -211,11 +211,11 @@ public class Todo_listActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()){ //option for click the menu of the toolbar
             case R.id.Add:
-                startActivity(new Intent(this, insertlistActivity.class));
+                startActivity(new Intent(this, insertlistActivity.class)); // go to insertlistActivity
 
-            case R.id.Delete:
+            case R.id.Delete: // call the restlist function to delete all the task
                 resetlist();
         }
         return super.onOptionsItemSelected(item);

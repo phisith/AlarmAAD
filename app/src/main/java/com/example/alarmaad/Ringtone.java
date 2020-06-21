@@ -7,7 +7,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-public class Ringtone extends Service {
+public class Ringtone extends Service { // this is the class for the alarm song
     private MediaPlayer mediaPlayer;
     @Nullable
     @Override
@@ -15,7 +15,7 @@ public class Ringtone extends Service {
         return null;
     }
     public void onCreate(){
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wakeup);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wakeup); // set the alarm music or song
         mediaPlayer.setLooping(false);
     }
 

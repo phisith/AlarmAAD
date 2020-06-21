@@ -20,28 +20,22 @@ public class NotificationReceiver extends BroadcastReceiver {
 
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(Context context, Intent intent) { // this is the connector between the alarm function the notification function
         NotiChannel notiChannel = new NotiChannel(context);
-        NotificationCompat.Builder nb = notiChannel.getChannelNotification();
+        NotificationCompat.Builder nb = notiChannel.getChannelNotification(); //to get the notification start
         notiChannel.getManager().notify(1, nb.build());
 
-        Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        long[] mVibratePattern = new long[]{0, 250, 800, 600, 1000, 800, 1000, 1000};
+        Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE); // get the vibrator start
+        long[] mVibratePattern = new long[]{0, 250, 800, 600, 1000, 800, 1000, 1000}; // set the pattern of the vibrate
         VibrationEffect effect = VibrationEffect.createWaveform(mVibratePattern, 0);
         vibrator.vibrate(effect);
 
-        if (vibrator.hasVibrator()) {
+        if (vibrator.hasVibrator()) { // to check that the device got the vibrator
             Log.v("Can Vibrate", "YES");
         } else {
             Log.v("Can Vibrate", "NO");
         }
 
-
-
-        Uri RingRing = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-
-        Ringtone ringtone = RingtoneManager.getRingtone(context,RingRing);
-        ringtone.play();
 
 
 

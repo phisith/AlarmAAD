@@ -32,11 +32,11 @@ public class Splash_Screen extends AppCompatActivity {
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class)); //set the next the page after the splash screen gone
             }
         };
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 800);
+        mHandler.postDelayed(mRunnable, 800); // set duration of the splash screen will stay
 
         root = findViewById(R.id.root5);
         ;
