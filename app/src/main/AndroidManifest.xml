@@ -3,6 +3,15 @@
     package="com.example.alarmaad">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <supports-screens
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:anyDensity="true"
+        />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,17 +19,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SetAlarmActivity"></activity>
-        <activity android:name=".Alarm_listActivity"></activity>
-        <activity android:name=".MainActivity">
+
+
+        <activity android:name=".insertlistActivity"></activity>
+        <activity android:name=".SetAlarmActivity" />
+        <activity android:name=".Todo_listActivity" />
+        <activity android:name=".Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
 
-        <receiver android:name=".NotificationReceiver"></receiver>
+        <receiver android:name=".NotificationReceiver" />
+        <service android:name=".Ringtone"/>
     </application>
 
 </manifest>

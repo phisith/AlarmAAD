@@ -2,9 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/List"
-        android:icon="@drawable/ic_list_black_24dp"
+        android:id="@+id/Add"
+        android:icon="@drawable/ic_add_black_24dp"
         app:showAsAction="ifRoom"
-        android:title="List" />
+        android:title="ADD" />
+
+    <item
+        android:id="@+id/Delete"
+        android:icon="@drawable/ic_delete_black_24dp"
+        app:showAsAction="ifRoom"
+        android:title="ADD" />
 
 </menu>
