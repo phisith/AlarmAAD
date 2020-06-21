@@ -88,10 +88,12 @@ public class MainActivity extends AppCompatActivity {
                 if (newValue >= 127){
                     root.setBackgroundColor(Color.rgb(255,255,255));
                     text1.setTextColor(Color.rgb(0,0,0));
+                    tempV.setTextColor(Color.rgb(0,0,0));
                 }
                 else{
                     root.setBackgroundColor(Color.rgb(0,0,0));
                     text1.setTextColor(Color.rgb(255,125,0));
+                    tempV.setTextColor(Color.rgb(255,125,0));
                 }
 
             }

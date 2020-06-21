@@ -10,6 +10,11 @@ import android.app.Person;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -38,10 +43,14 @@ public class Todo_listActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+    SensorManager sensorManager;
+    Sensor light, temp;
+    SensorEventListener lightListener, tempListener;
+    View root;
+    float maxValue;
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
-
-
 
     ArrayList<Todo> todoArrayList;
     RecyclerAdapter recyclerAdapter;
@@ -70,6 +79,65 @@ public class Todo_listActivity extends AppCompatActivity {
         clearlist();
 
         GetDataFromdatabase();
+
+        root = findViewById(R.id.root6);
+
+
+
+
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        temp = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+
+        if (light == null) {
+            Toast.makeText(this, "this device no light sensor", Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        tempListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+
+
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
+        //get the maxrage of light sensor
+        maxValue = light.getMaximumRange();
+
+        lightListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                float value = event.values[0];
+                //getSupportActionBar().setTitle("light : " + value + " xl");
+
+
+                //between 0 to 255
+                int newValue = (int) (255 * value / maxValue);
+                if (newValue >= 127){
+                    root.setBackgroundColor(Color.rgb(255,255,255));
+
+                }
+                else{
+                    root.setBackgroundColor(Color.rgb(0,0,0));
+
+                }
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+
+            }
+        };
     }
 
     private void GetDataFromdatabase() {
@@ -151,5 +219,18 @@ public class Todo_listActivity extends AppCompatActivity {
                 resetlist();
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(lightListener, light, SensorManager.SENSOR_DELAY_FASTEST);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(lightListener);
+
     }
 }
