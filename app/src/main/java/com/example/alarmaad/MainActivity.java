@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
     private void openSetAlarmActivity() {
         Intent intent = new Intent(this, SetAlarmActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void openTodo_list() {
